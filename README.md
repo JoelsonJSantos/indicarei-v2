@@ -1,6 +1,12 @@
 # Indicarei v2
 
-Nova versão da plataforma **Indicarei**, criada do zero com foco em experiência responsiva para desktop e mobile, busca de profissionais e serviços, perfis públicos, painel profissional e administração.
+Nova versão da plataforma **Indicarei**, criada do zero com foco em experiência responsiva para desktop e mobile, divulgação e busca de profissionais e serviços, perfis públicos, painel profissional e administração.
+
+## Direção do produto
+
+O Indicarei é um portal de profissionais. Visitantes podem pesquisar, visualizar perfis e entrar em contato sem precisar criar uma conta.
+
+O cadastro público é destinado aos profissionais que desejam divulgar seus serviços. Não haverá cadastro separado de cliente nesta fase.
 
 ## Arquitetura
 
@@ -45,9 +51,8 @@ As integrações serão implementadas depois da criação e validação visual d
 - `/buscar` — busca e filtros
 - `/categorias` — listagem de categorias
 - `/p/[slug]` — perfil público profissional
-- `/entrar` — acesso à conta
-- `/cadastrar` — escolha do tipo de cadastro
-- `/cadastrar/cliente` — cadastro de cliente
+- `/entrar` — acesso de profissionais e administradores
+- `/cadastrar` — redirecionamento para o cadastro profissional
 - `/cadastrar/profissional` — cadastro profissional
 - `/recuperar-senha` — recuperação de acesso
 - `/sobre`, `/contato`, `/termos` e `/privacidade`
