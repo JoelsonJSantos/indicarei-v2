@@ -3,7 +3,7 @@
 import {
   BriefcaseBusiness,
   Home,
-  Layers3,
+  LayoutGrid,
   LogIn,
   Menu,
   Moon,
@@ -19,10 +19,10 @@ const STORAGE_KEY = "indicarei-theme";
 type Theme = "light" | "dark";
 
 const navigation = [
-  { href: "#inicio", label: "Início", icon: Home },
-  { href: "#como-funciona", label: "Como funciona", icon: Layers3 },
-  { href: "#categorias", label: "Categorias", icon: Search },
-  { href: "#profissionais", label: "Para profissionais", icon: BriefcaseBusiness },
+  { href: "/", label: "Início", icon: Home },
+  { href: "/buscar", label: "Buscar profissionais", icon: Search },
+  { href: "/categorias", label: "Categorias", icon: LayoutGrid },
+  { href: "/cadastrar", label: "Para profissionais", icon: BriefcaseBusiness },
 ];
 
 export function ThemeToggle() {
@@ -43,21 +43,13 @@ export function ThemeToggle() {
   }, []);
 
   useEffect(() => {
-    if (!menuOpen) {
-      document.body.style.overflow = "";
-      return;
-    }
-
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = menuOpen ? "hidden" : "";
 
     function closeOnEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setMenuOpen(false);
-      }
+      if (event.key === "Escape") setMenuOpen(false);
     }
 
     window.addEventListener("keydown", closeOnEscape);
-
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", closeOnEscape);
@@ -66,14 +58,9 @@ export function ThemeToggle() {
 
   function toggleTheme() {
     const nextTheme: Theme = theme === "dark" ? "light" : "dark";
-
     document.documentElement.classList.toggle("dark", nextTheme === "dark");
     window.localStorage.setItem(STORAGE_KEY, nextTheme);
     setTheme(nextTheme);
-  }
-
-  function closeMenu() {
-    setMenuOpen(false);
   }
 
   return (
@@ -83,7 +70,6 @@ export function ThemeToggle() {
         onClick={toggleTheme}
         className="grid size-10 place-items-center rounded-xl text-[var(--text-muted)] transition hover:bg-[var(--surface-hover)] hover:text-[var(--text)]"
         aria-label={mounted && theme === "dark" ? "Ativar tema claro" : "Ativar tema escuro"}
-        title={mounted && theme === "dark" ? "Tema claro" : "Tema escuro"}
       >
         {mounted && theme === "dark" ? <Sun size={19} /> : <Moon size={19} />}
       </button>
@@ -94,7 +80,6 @@ export function ThemeToggle() {
         className="grid size-10 place-items-center rounded-xl text-[var(--text)] transition hover:bg-[var(--surface-hover)] lg:hidden"
         aria-label="Abrir menu"
         aria-expanded={menuOpen}
-        aria-controls="menu-mobile"
       >
         <Menu size={22} />
       </button>
@@ -104,14 +89,11 @@ export function ThemeToggle() {
           <button
             type="button"
             className="absolute inset-0 bg-[#081219]/60 backdrop-blur-sm"
-            onClick={closeMenu}
+            onClick={() => setMenuOpen(false)}
             aria-label="Fechar menu"
           />
 
-          <aside
-            id="menu-mobile"
-            className="absolute right-0 top-0 flex h-full w-[min(88vw,380px)] flex-col border-l border-[var(--border)] bg-[var(--surface)] shadow-[-20px_0_60px_rgba(0,0,0,.18)]"
-          >
+          <aside className="absolute right-0 top-0 flex h-full w-[min(88vw,380px)] flex-col border-l border-[var(--border)] bg-[var(--surface)] shadow-[-20px_0_60px_rgba(0,0,0,.18)]">
             <div className="flex h-16 items-center justify-between border-b border-[var(--border)] px-5">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--primary)]">Navegação</p>
@@ -119,8 +101,8 @@ export function ThemeToggle() {
               </div>
               <button
                 type="button"
-                onClick={closeMenu}
-                className="grid size-10 place-items-center rounded-xl text-[var(--text-muted)] hover:bg-[var(--surface-hover)] hover:text-[var(--text)]"
+                onClick={() => setMenuOpen(false)}
+                className="grid size-10 place-items-center rounded-xl text-[var(--text-muted)] hover:bg-[var(--surface-hover)]"
                 aria-label="Fechar menu"
               >
                 <X size={22} />
@@ -133,8 +115,8 @@ export function ThemeToggle() {
                   <a
                     key={href}
                     href={href}
-                    onClick={closeMenu}
-                    className="flex items-center gap-3 rounded-2xl px-4 py-3.5 font-bold text-[var(--text)] transition hover:bg-[var(--background)]"
+                    onClick={() => setMenuOpen(false)}
+                    className="flex items-center gap-3 rounded-2xl px-4 py-3.5 font-bold transition hover:bg-[var(--background)]"
                   >
                     <span className="grid size-10 place-items-center rounded-xl bg-[var(--success-bg)] text-[var(--primary)]">
                       <Icon size={19} />
@@ -148,20 +130,18 @@ export function ThemeToggle() {
             <div className="border-t border-[var(--border)] p-4">
               <div className="grid gap-3">
                 <a
-                  href="#"
-                  onClick={closeMenu}
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 font-bold hover:bg-[var(--surface-hover)]"
+                  href="/entrar"
+                  onClick={() => setMenuOpen(false)}
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-[var(--border)] px-4 font-bold hover:bg-[var(--surface-hover)]"
                 >
-                  <LogIn size={18} />
-                  Entrar
+                  <LogIn size={18} /> Entrar
                 </a>
                 <a
-                  href="#profissionais"
-                  onClick={closeMenu}
+                  href="/cadastrar"
+                  onClick={() => setMenuOpen(false)}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-[var(--primary)] px-4 font-bold text-white hover:bg-[var(--primary-hover)]"
                 >
-                  <UserPlus size={18} />
-                  Criar perfil profissional
+                  <UserPlus size={18} /> Cadastrar
                 </a>
               </div>
             </div>
