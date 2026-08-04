@@ -52,7 +52,6 @@ As integrações serão implementadas depois da criação e validação visual d
 - `/categorias` — listagem de categorias
 - `/p/[slug]` — perfil público profissional
 - `/entrar` — acesso de profissionais e administradores
-- `/cadastrar` — redirecionamento para o cadastro profissional
 - `/cadastrar/profissional` — cadastro profissional
 - `/recuperar-senha` — recuperação de acesso
 - `/sobre`, `/contato`, `/termos` e `/privacidade`
