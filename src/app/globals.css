@@ -2,42 +2,61 @@
 
 :root {
   color-scheme: light;
+
   --background: #f6f7f3;
   --background-soft: #f2efe4;
   --surface: #ffffff;
   --surface-hover: #f8faf9;
+
   --primary: #168c7e;
   --primary-hover: #0f6f66;
   --accent: #25b9a8;
+
   --text: #0f1720;
   --text-muted: #6b737b;
+
   --border: #dce5e2;
+  --card-border: #dce5e2;
   --ring: #25b9a8;
+
   --success-bg: #ddeee8;
   --success-text: #0f6f66;
   --danger-bg: #f7dddd;
   --danger-text: #c55656;
-  --shadow: 0 20px 55px rgba(15, 23, 32, 0.08);
+
+  --shadow: 0 10px 28px rgba(15, 23, 32, 0.07);
+  --card-shadow: 0 8px 24px rgba(15, 23, 32, 0.06);
 }
 
 .dark {
   color-scheme: dark;
+
   --background: #14222c;
   --background-soft: #182a35;
   --surface: #1e2d38;
   --surface-hover: #243744;
+
   --primary: #25b9a8;
-  --primary-hover: #168c7e;
+  --primary-hover: #31c9b7;
   --accent: #59d3c3;
+
   --text: #e6edf2;
   --text-muted: #9aa3ac;
+
   --border: #2c3f4b;
+  --card-border: rgba(44, 224, 205, 0.2);
   --ring: #59d3c3;
+
   --success-bg: #1d3a33;
   --success-text: #bde9dc;
   --danger-bg: #3c2525;
   --danger-text: #f0a0a0;
-  --shadow: 0 22px 58px rgba(0, 0, 0, 0.3);
+
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+  --card-shadow:
+    0 0 0 1px rgba(44, 224, 205, 0.04),
+    0 0 18px rgba(44, 224, 205, 0.075),
+    0 10px 26px rgba(0, 0, 0, 0.16);
 }
 
 * {
@@ -59,16 +78,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-body,
 header,
 section,
 footer,
 article,
 button,
 a,
-input {
-  transition-property: background-color, border-color, color, box-shadow, transform;
-  transition-duration: 180ms;
+input,
+textarea,
+select {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 160ms;
   transition-timing-function: ease;
 }
 
@@ -93,6 +113,17 @@ input::placeholder {
   opacity: 1;
 }
 
+.card-surface {
+  border: 1px solid var(--card-border);
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+}
+
+.card-flat {
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
 :focus-visible {
   outline: 3px solid color-mix(in srgb, var(--ring) 42%, transparent);
   outline-offset: 3px;
@@ -101,4 +132,13 @@ input::placeholder {
 ::selection {
   background: var(--accent);
   color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
