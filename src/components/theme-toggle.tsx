@@ -23,7 +23,11 @@ const navigation = [
   { href: "/", label: "Início", icon: Home },
   { href: "/buscar", label: "Buscar profissionais", icon: Search },
   { href: "/categorias", label: "Categorias", icon: LayoutGrid },
-  { href: "/cadastrar", label: "Para profissionais", icon: BriefcaseBusiness },
+  {
+    href: "/cadastrar/profissional",
+    label: "Para profissionais",
+    icon: BriefcaseBusiness,
+  },
 ];
 
 export function ThemeToggle() {
@@ -138,11 +142,11 @@ export function ThemeToggle() {
                   <LogIn size={18} /> Entrar
                 </Link>
                 <Link
-                  href="/cadastrar"
+                  href="/cadastrar/profissional"
                   onClick={() => setMenuOpen(false)}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-[var(--primary)] px-4 font-bold text-white hover:bg-[var(--primary-hover)]"
                 >
-                  <UserPlus size={18} /> Cadastrar
+                  <UserPlus size={18} /> Divulgar meu trabalho
                 </Link>
               </div>
             </div>
