@@ -37,12 +37,17 @@ export function ThemeToggle() {
 
   useEffect(() => {
     const storedTheme = window.localStorage.getItem(STORAGE_KEY) as Theme | null;
-    const preferredTheme: Theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+    const preferredTheme: Theme = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches
       ? "dark"
       : "light";
     const initialTheme = storedTheme ?? preferredTheme;
 
-    document.documentElement.classList.toggle("dark", initialTheme === "dark");
+    document.documentElement.classList.toggle(
+      "dark",
+      initialTheme === "dark",
+    );
     setTheme(initialTheme);
     setMounted(true);
   }, []);
@@ -63,7 +68,10 @@ export function ThemeToggle() {
 
   function toggleTheme() {
     const nextTheme: Theme = theme === "dark" ? "light" : "dark";
-    document.documentElement.classList.toggle("dark", nextTheme === "dark");
+    document.documentElement.classList.toggle(
+      "dark",
+      nextTheme === "dark",
+    );
     window.localStorage.setItem(STORAGE_KEY, nextTheme);
     setTheme(nextTheme);
   }
@@ -73,24 +81,37 @@ export function ThemeToggle() {
       <button
         type="button"
         onClick={toggleTheme}
-        className="grid size-10 place-items-center rounded-xl text-[var(--text-muted)] transition hover:bg-[var(--surface-hover)] hover:text-[var(--text)]"
-        aria-label={mounted && theme === "dark" ? "Ativar tema claro" : "Ativar tema escuro"}
+        className="grid size-10 place-items-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] hover:bg-[var(--surface-hover)] hover:text-[var(--text)]"
+        aria-label={
+          mounted && theme === "dark"
+            ? "Ativar tema claro"
+            : "Ativar tema escuro"
+        }
       >
-        {mounted && theme === "dark" ? <Sun size={19} /> : <Moon size={19} />}
+        {mounted && theme === "dark" ? (
+          <Sun size={18} />
+        ) : (
+          <Moon size={18} />
+        )}
       </button>
 
       <button
         type="button"
         onClick={() => setMenuOpen(true)}
-        className="grid size-10 place-items-center rounded-xl text-[var(--text)] transition hover:bg-[var(--surface-hover)] lg:hidden"
+        className="grid size-10 place-items-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:bg-[var(--surface-hover)] lg:hidden"
         aria-label="Abrir menu"
         aria-expanded={menuOpen}
       >
-        <Menu size={22} />
+        <Menu size={21} />
       </button>
 
       {menuOpen ? (
-        <div className="fixed inset-0 z-[100] lg:hidden" role="dialog" aria-modal="true" aria-label="Menu principal">
+        <div
+          className="fixed inset-0 z-[100] lg:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu principal"
+        >
           <button
             type="button"
             className="absolute inset-0 bg-[#081219]/60 backdrop-blur-sm"
@@ -98,19 +119,21 @@ export function ThemeToggle() {
             aria-label="Fechar menu"
           />
 
-          <aside className="absolute right-0 top-0 flex h-full w-[min(88vw,380px)] flex-col border-l border-[var(--border)] bg-[var(--surface)] shadow-[-20px_0_60px_rgba(0,0,0,.18)]">
+          <aside className="absolute right-0 top-0 flex h-full w-[min(88vw,380px)] flex-col border-l border-[var(--border)] bg-[var(--surface)] shadow-[-20px_0_60px_rgba(0,0,0,0.18)]">
             <div className="flex h-16 items-center justify-between border-b border-[var(--border)] px-5">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--primary)]">Navegação</p>
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--primary)]">
+                  Navegação
+                </p>
                 <p className="font-black">Menu Indicarei</p>
               </div>
               <button
                 type="button"
                 onClick={() => setMenuOpen(false)}
-                className="grid size-10 place-items-center rounded-xl text-[var(--text-muted)] hover:bg-[var(--surface-hover)]"
+                className="grid size-10 place-items-center rounded-full text-[var(--text-muted)] hover:bg-[var(--surface-hover)]"
                 aria-label="Fechar menu"
               >
-                <X size={22} />
+                <X size={21} />
               </button>
             </div>
 
@@ -121,7 +144,7 @@ export function ThemeToggle() {
                     key={href}
                     href={href}
                     onClick={() => setMenuOpen(false)}
-                    className="flex items-center gap-3 rounded-2xl px-4 py-3.5 font-bold transition hover:bg-[var(--background)]"
+                    className="flex items-center gap-3 rounded-xl px-4 py-3.5 font-bold hover:bg-[var(--background)]"
                   >
                     <span className="grid size-10 place-items-center rounded-xl bg-[var(--success-bg)] text-[var(--primary)]">
                       <Icon size={19} />
@@ -137,16 +160,16 @@ export function ThemeToggle() {
                 <Link
                   href="/entrar"
                   onClick={() => setMenuOpen(false)}
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-[var(--border)] px-4 font-bold hover:bg-[var(--surface-hover)]"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[var(--border)] px-4 font-bold hover:bg-[var(--surface-hover)]"
                 >
                   <LogIn size={18} /> Entrar
                 </Link>
                 <Link
                   href="/cadastrar/profissional"
                   onClick={() => setMenuOpen(false)}
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-[var(--primary)] px-4 font-bold text-white hover:bg-[var(--primary-hover)]"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[var(--primary)] px-4 font-bold text-white hover:bg-[var(--primary-hover)]"
                 >
-                  <UserPlus size={18} /> Divulgar meu trabalho
+                  <UserPlus size={18} /> Criar perfil
                 </Link>
               </div>
             </div>
