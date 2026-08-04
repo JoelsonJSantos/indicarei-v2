@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   BriefcaseBusiness,
   Home,
@@ -112,7 +113,7 @@ export function ThemeToggle() {
             <nav className="flex-1 overflow-y-auto px-4 py-5">
               <div className="space-y-2">
                 {navigation.map(({ href, label, icon: Icon }) => (
-                  <a
+                  <Link
                     key={href}
                     href={href}
                     onClick={() => setMenuOpen(false)}
@@ -122,27 +123,27 @@ export function ThemeToggle() {
                       <Icon size={19} />
                     </span>
                     {label}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </nav>
 
             <div className="border-t border-[var(--border)] p-4">
               <div className="grid gap-3">
-                <a
+                <Link
                   href="/entrar"
                   onClick={() => setMenuOpen(false)}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-[var(--border)] px-4 font-bold hover:bg-[var(--surface-hover)]"
                 >
                   <LogIn size={18} /> Entrar
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/cadastrar"
                   onClick={() => setMenuOpen(false)}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-[var(--primary)] px-4 font-bold text-white hover:bg-[var(--primary-hover)]"
                 >
                   <UserPlus size={18} /> Cadastrar
-                </a>
+                </Link>
               </div>
             </div>
           </aside>
