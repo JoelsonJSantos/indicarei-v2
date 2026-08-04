@@ -8,8 +8,7 @@ Nova versão da plataforma **Indicarei**, criada do zero com foco em experiênci
 - React 19
 - TypeScript
 - Tailwind CSS 4
-- Docker
-- Google Cloud Run
+- Vercel
 
 ## Identidade visual
 
@@ -38,13 +37,6 @@ npm run lint
 npm run build
 ```
 
-## Docker
+## Implantação
 
-```bash
-docker build -t indicarei-v2 .
-docker run --rm -p 8080:8080 -e PORT=8080 indicarei-v2
-```
-
-## Cloud Run
-
-O projeto usa `output: "standalone"` no Next.js e está preparado para execução em contêiner no Google Cloud Run.
+O projeto será publicado pela Vercel, conectado diretamente a este repositório do GitHub.
