@@ -22,7 +22,7 @@ export function PublicPageShell({ children }: PublicPageShellProps) {
             <Link href="/" className="transition hover:text-[var(--text)]">Início</Link>
             <Link href="/buscar" className="transition hover:text-[var(--text)]">Buscar</Link>
             <Link href="/categorias" className="transition hover:text-[var(--text)]">Categorias</Link>
-            <Link href="/cadastrar" className="transition hover:text-[var(--text)]">Para profissionais</Link>
+            <Link href="/cadastrar/profissional" className="transition hover:text-[var(--text)]">Para profissionais</Link>
           </nav>
 
           <div className="flex items-center gap-2">
@@ -34,10 +34,10 @@ export function PublicPageShell({ children }: PublicPageShellProps) {
               Entrar
             </Link>
             <Link
-              href="/cadastrar"
+              href="/cadastrar/profissional"
               className="hidden rounded-xl bg-[var(--primary)] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[var(--primary-hover)] md:inline-flex"
             >
-              Cadastrar
+              Divulgar meu trabalho
             </Link>
           </div>
         </div>
@@ -62,7 +62,7 @@ export function PublicPageShell({ children }: PublicPageShellProps) {
             <div className="mt-3 grid gap-2 text-[var(--text-muted)]">
               <Link href="/buscar">Buscar profissionais</Link>
               <Link href="/categorias">Categorias</Link>
-              <Link href="/cadastrar">Criar perfil</Link>
+              <Link href="/cadastrar/profissional">Criar perfil profissional</Link>
             </div>
           </div>
 
