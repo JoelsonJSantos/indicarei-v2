@@ -14,7 +14,7 @@ export default function LoginPage() {
               </span>
               <h1 className="mt-8 text-4xl font-black tracking-[-0.045em]">Bem-vindo de volta.</h1>
               <p className="mt-4 max-w-sm leading-7 text-[var(--text-muted)]">
-                Entre para acessar seus favoritos, perfil profissional ou painel administrativo.
+                Entre para acessar seu perfil profissional ou o painel administrativo.
               </p>
             </div>
             <p className="text-sm text-[var(--text-muted)]">Autenticação real será conectada ao Supabase.</p>
@@ -54,7 +54,10 @@ export default function LoginPage() {
               </form>
 
               <p className="mt-6 text-center text-sm text-[var(--text-muted)]">
-                Ainda não tem conta? <Link href="/cadastrar" className="font-bold text-[var(--primary)]">Cadastre-se</Link>
+                Quer divulgar seu trabalho?{" "}
+                <Link href="/cadastrar/profissional" className="font-bold text-[var(--primary)]">
+                  Criar perfil profissional
+                </Link>
               </p>
             </div>
           </section>
